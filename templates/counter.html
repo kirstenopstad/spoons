@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+{% block title %}
+    Theory
+{% endblock %}
+
+{% block main %}
+<div>
+    <h2>Hello, {{ username }} you have </h2>
+    <h1 id="spoon-count" value="{{ spoons }}"></h1>
+    <h6 id="liveAlertPlaceholder"></h6>
+    <h2>spoons today.</h2>
+    <button type="button" class="btn btn-primary reset" id="reset">Reset</button>
+</div>
+<table>
+    <div class="activity-cards">
+        <table class="table">
+            <thead>
+                <!-- Header Row -->
+                <tr>
+                    <th class="col-title" scope="col">
+                        <img src="/static/spoon.png" alt="one spoon">
+                    </th>
+
+                    <th class="col-title" scope="col">
+                        <img src="/static/spoon.png"><img src="/static/spoon.png" alt="two spoons">
+                    </th>
+                    <th class="col-title" scope="col">
+                        <img src="/static/spoon.png"><img src="/static/spoon.png"><img src="/static/spoon.png" alt="three spoons">
+                    </th>
+                    <th class="col-title" scope="col">
+                        <img src="/static/spoon.png"><img src="/static/spoon.png"><img src="/static/spoon.png"><img src="/static/spoon.png" alt="four spoons">
+                    </th>
+                </tr>
+            </thead>
+            <!-- Activities Organized by Spoon Value -->
+            <tr>
+                <td id="one-spoon">
+                    {% for activity in one_spoon_activities %}
+                    <div class="container activity-card">
+                        <div class="card-body">
+                            <button id="{{ activity.user_value }}" class="btn btn-primary activity" value="0">{{ activity.title }}
+                                <span class="badge rounded-pill text-bg-success" id="{{ activity.activity_id }}">#</span>
+                            </button>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </td>
+                <td id="two-spoon">
+                    {% for activity in two_spoon_activities %}
+                    <div class="container activity-card">
+                        <div class="card-body">
+                            <button id="{{ activity.user_value }}" class="btn btn-primary activity">{{ activity.title }}
+                                <span class="badge rounded-pill text-bg-success" id="{{ activity.activity_id }}">#</span>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </td>
+                <td id="three-spoon">
+                    {% for activity in three_spoon_activities %}
+                    <div class="container activity-card">
+                        <div class="card-body">
+                            <button id="{{ activity.user_value }}" class="btn btn-primary activity">{{ activity.title }}
+                                <span class="badge rounded-pill text-bg-success" id="{{ activity.activity_id }}">#</span>
+                            </button>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </td>
+                <td id="four-spoon">
+                    {% for activity in four_spoon_activities %}
+                    <div class="container activity-card">
+                        <div class="card-body">
+                            <button id="{{ activity.user_value }}" class="btn btn-primary activity">{{ activity.title }}
+                                <span class="badge rounded-pill text-bg-success" id="{{ activity.activity_id }}">#</span>
+                            </button>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tbody>
+        </table>
+{% for activity in activities %}
+<div class="container activity-card">
+    <div class="card-body">
+        <button id="{{ activity.user_value }}" class="btn btn-primary activity">{{ activity.title }}</button>
+    </div>
+  </div>
+{% endfor %}
+<script>
+    // Once site is loaded
+    document.addEventListener("DOMContentLoaded", function count(){
+
+        // Initialize spoonCount to 15
+        let spoonCount = {{ spoons }};
+        let spoonBottom = "0";
+        document.querySelector("#spoon-count").innerHTML = spoonCount;
+
+        // Define reset
+        let reset = document.querySelector("#reset");
+
+        // Define activities
+        let activities = document.querySelectorAll(".activity");
+
+        // For # of activities
+        for (let i = 0; i < activities.length; i++){
+
+            // Resent activity colors
+            activities[i].style.backgroundColor = "blue";
+
+            // Reset activity counters
+            let counter = "";
+            activities[i].children[0].innerText = counter;
+
+            // Listen for activity click
+            activities[i].addEventListener("click", function(){
+
+                // Reset reset button color to blue
+                reset.style.backgroundColor = "blue";
+
+                // If doing activity is possible, given remaining amount of spoons
+                if ((spoonCount - activities[i].id) >= 0) {
+                    // Change button color to green
+                    activities[i].style.backgroundColor = "green";
+                    // Deduct spoon value from spoon count
+                    spoonCount -= activities[i].id;
+                    // Replace innerHTML with new spooncount
+                    document.querySelector('#spoon-count').innerHTML = spoonCount;
+                    // Clear "not enought spoons" alert
+                    document.querySelector('#liveAlertPlaceholder').innerHTML = "";
+                    // Count number of times activity has been clicked
+                    if (counter === ""){
+                        counter = 1;
+                        activities[i].children[0].innerText = counter;
+                        activities[i].children[0].style.backgroundColor = "orange";
+                    }
+                    else {
+                        counter = parseInt(counter);
+                        counter += 1;
+                        activities[i].children[0].innerText = counter;
+                    }
+                }
+                // Else
+                else {
+                    // Change button color to red
+                    activities[i].style.backgroundColor = "gray";
+                    // Display alert
+                    document.querySelector('#liveAlertPlaceholder').innerHTML = "not enough spoons!";
+                }
+
+            });
+
+            // Listen for reset click
+            reset.addEventListener("click", function(){
+                reset.style.backgroundColor = "green";
+                // Restart function
+                count(spoonCount);
+                // Clear "not enough spoons" alert
+                document.querySelector('#liveAlertPlaceholder').innerHTML = "";
+            });
+        }
+        return spoonCount;
+    });
+    </script>
+{% endblock %}

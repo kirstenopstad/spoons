@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add
+{% endblock %}
+
+{% block main %}
+<h2>Add Activity</h2>
+<form action="/add" method="post">
+    <!-- Text field where user inputs activity title "title" -->
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="title" name="title" placeholder="Activity Name" type="text">
+    </div>
+    <!-- Select where options are from displayed from graphics and returns "graphic" (text tag)-->
+    <!-- Text field where user inputs default "spoon" value "def-val" -->
+    <div class="mb-3">
+        <label for="def_val" class="form-label">Default Spoon Value</label>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="def_val" name="def_val" placeholder="#" type="number" min="1" max="4">
+    </div>
+    <button class="btn btn-primary" type="submit">Add Activity</button>
+</form>
+
+{% endblock %}

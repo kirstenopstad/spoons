@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change
+{% endblock %}
+
+{% block main %}
+<h2>Change Activity Values</h2>
+<form action="/change" method="post">
+
+    <!-- Drop down list of activities -->
+    <select name="activity" placeholder="Select Activity">
+        {% for stored_activity in stored_activities %}
+        <option>{{ stored_activity.title }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- Input field for new spoon value -->
+    <label for="value" class="form-label">Assign New Value</label>
+    <input name="value" type="number" min="1" max="4" placeholder="#">
+
+    <!-- Submit button -->
+    <button class="btn btn-primary" type="submit">Update</button>
+
+</form>
+<h2>Change Daily Spoon Count</h2>
+<h6>[Current Daily Spoon Count: {{ spoon_count }}]</h6>
+<form action="/change_spooncount" method="post">
+        <!-- Input field for new spoon value -->
+        <label for="spoon_total" class="form-label">Set New Starting Point</label>
+        <input name="spoon_total" type="number" min="1" placeholder="#">
+
+        <!-- Submit button -->
+        <button class="btn btn-primary" type="submit">Update</button>
+</form>
+{% endblock %}

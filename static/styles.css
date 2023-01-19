@@ -1,0 +1,22 @@
+body{
+    text-align: center;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+p {
+    max-width: 500px;
+    text-align: center;
+    margin: auto;
+    display: block;
+    margin-bottom: 1rem;
+}
+th {
+    font-weight: normal;
+}
+
+.col-title {
+    font-weight: bold;
+}

@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+    <h2>Profile</h2>
+    <p>Change daily spoon total, add activites and modify spoon values stored in your profile.</p>
+    <form action="/change_spooncount" method="post">
+        <!-- Input field for new spoon value -->
+        <label for="spoon_total" class="form-label">Daily Spoon Total</label>
+        <input name="spoon_total" type="number" min="1" placeholder="{{ spoon_count }}">
+
+        <!-- Submit button -->
+        <button class="btn btn-primary" type="submit">Update</button>
+    </form>
+    <table class="table">
+        <thead>
+            <!-- Header Row -->
+            <tr>
+                <th class="col-title" scope="col">Activity</th>
+                <th class="col-title" scope="col">Spoon Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <form action="/change" method="post">
+                    <!-- Drop down list of activities -->
+                    <td>
+                        <select autocomplete="off" autofocus class="form-control mx-auto w-auto" name="activity" placeholder="Select Activity">
+                            <option>Select Activity from List</option>
+                            {% for activity in activities %}
+                            <option>{{ activity.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <!-- Input field for new spoon value -->
+                    <td><input <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="value" type="number" min="1" max="4" placeholder="#"></td>
+                    <!-- Submit button -->
+                    <td><button class="btn btn-primary" type="submit">Add to Library</button></td>
+                </form>
+            </tr>
+            <tr>
+                <form action="/add" method="post">
+                    <!-- Input field for new activity -->
+                    <td><input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="title" name="title" placeholder="Add New Activity" type="text"></td>
+                    <!-- Input field for activity value -->
+                    <td><input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="def_val" name="def_val" placeholder="#" type="number" min="1" max="4"></td>
+                    <!-- Submit button -->
+                    <td><button class="btn btn-primary" type="submit">Add to Library</button></td>
+                </form>
+            </tr>
+            {% for user_activity in user_activities %}
+            <tr>
+                <form action="/remove" method="post">
+                    <td>{{ user_activity.title }} <input type="hidden" name="activity" value="{{ user_activity.activity_id }}"></td>
+                    <td>{{ user_activity.user_value }}</td>
+                    <td><button class="btn btn-primary" type="submit">Remove</button></td>
+                </form>
+            </tr>
+            {% endfor %}
+        <tbody>
+    </table>
+{% endblock %}
