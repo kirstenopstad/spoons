@@ -1,11 +1,98 @@
-# SPOONS
+# Spoons
+#### By Kirsten Opstad
+#### A tool for expanding compassion
+
+***
+
 #### Video Demo:  <https://www.youtube.com/watch?v=g32EIWWSJJo&t=8s>
-#### Description:
+<!-- ![preview](url) -->
+***
+## Description
 
-- Spoons is a web-based application using JavaScript, Python, and SQL.
+Spoons is a web-based application using JavaScript, Python, and SQL. Powered by the dynamic spoon counter, deducts spoons based on activities user selects, simulating the experience of expending energy throughout the day.
 
-## Getting Started
-### Questions to consider:
+Registered users are able to change/update "spoon values" of activities, add new activities to their profile and change their "daily spoon count." Preferences are stored/updated in a SQL database.
+
+Prompted by a conversation with a friend about communicating one's capacity to their partner, the purpose of Spoons is built to help expand compassion between partners, roommates, collaborators & colleagues.
+
+Spoons was built as my final project for CS50.
+
+***
+## Technologies Used
+
+* Python
+* Flask
+* SQL
+* HTML
+* CSS
+* Bootstrap
+* Werkzeug
+
+***
+
+## Objectives (MVP)
+
+This application will:
+* Display and update daily spoon count based on activities user selects
+* Allow authenticated users to:
+    * Add new activities
+    * Update "spoon value" of activities
+    * Update their overall "spoon count"
+
+### __Specification__ (by Route)
+
+#### Index
+* ✅ Allow user to add activities to their day
+    * ✅ Deduct "spoons" from counter based on activity clicked
+    * ✅ Track how many times an activity has been clicked
+    * ✅ Once user runs out of "spoons"
+        * ✅ Allow simple reset
+        * Prompt user to create account to customize
+#### Counter
+* ✅ Displays user activities organized by spoon value
+* ✅ Allows user to add activities to their day & retains dynamic functionality of index
+#### Register
+* ✅ Allow user to register for an account via form.
+    * ✅ Require input of a unique username. Render apology if username is blank or taken.
+    * ✅ Require input of password, confirmation of password.  Render apology if password is blank or if don't match.
+    * ✅ Submit via post to /register
+    * ✅ Store username and hash of password in table users
+#### Change (functionality now embedded in profile.html)
+* ✅ Allow user to update value of an existing activity
+    * ✅ Require input of an activity that exists in table. Render apology if not a valid activity.
+    * ✅ Require input of number of spoons. Render apology if negative or not an int.
+    * ✅ Store value in table profiles along with user and activity id
+    * ✅ Allow user to update their default daily spoon level
+#### Add (functionality now embedded in profile.html)
+* ✅ Allow user to add a new activity
+    * ✅ Require input of title and description. Render apology if blank or if a number.
+    * ✅ Require user to set default value. Render apology if not a number
+    * ✅ Store title and default value in table activities; store user value in profiles
+#### Library (now "Profile")
+* ✅ Display activities that user has customized (changed value or added)
+* ✅ Ensure no duplicate activities are stored in user values
+* Allow users to update spoon count from profile
+* Allow users to add activities from profile
+* Allow users to change activity spoon value count from profile
+* Allow users to remove activity from profile using new route /remove
+
+***
+
+### __Goals__
+1. ✅ Meet MVP (Minimum Viable Product)
+2. ✅ Support repeat activites on single day with an activity counter
+3. Add CRUD functionality from Index
+
+### __Stretch Goals__
+
+#### Share
+* Allow user to share their activities & activity values with another user
+
+***
+
+## Process
+
+### Questions considered
 
 - What will your software do? What features will it have? How will it be executed?
     - Register, login & log out users
@@ -32,43 +119,31 @@
             - Given set of connected users
             - Tasks & user-defined "spoon" values
 
-## Goal Milestones
-    [X] Create SQLite database spoons.db
-    ### Index
-        [X] Allow user to add activities to their day
-            [X] Deduct "spoons" from counter based on activity clicked
-            [X] Track how many times an activity has been clicked
-            [X] Once user runs out of "spoons"
-                [X] Allow simple reset
-                [] Prompt user to create account to customize
-    ### Counter
-        [X] Displays user activities organized by spoon value
-        [X] Allows user to add activities to their day & retains dynamic functionality of index
-    ### Register
-        [X] Allow user to register for an account via form.
-            [X] Require input of a unique username. Render apology if username is blank or taken.
-            [X] Require input of password, confirmation of password.  Render apology if password is blank or if don't match.
-            [X] Submit via post to /register
-            [X] Store username and hash of password in table users
-    ### Change (functionality now embedded in profile.html)
-        [X] Allow user to update value of an existing activity
-            [X] Require input of an activity that exists in table. Render apology if not a valid activity.
-            [X] Require input of number of spoons. Render apology if negative or not an int.
-            [X] Store value in table profiles along with user and activity id
-        [X] Allow user to update their default daily spoon level
-    ### Add (functionality now embedded in profile.html)
-        [X] Allow user to add a new activity
-            [X] Require input of title and description. Render apology if blank or if a number.
-            [X] Require user to set default value. Render apology if not a number
-            [X] Store title and default value in table activities; store user value in profiles
-    ### Library (now "Profile")
-        [X] Display activities that user has customized (changed value or added)
-        [X] Ensure no duplicate activities are stored in user values
-        [] Allow users to update spoon count from profile
-        [] Allow users to add activities from profile
-        [] Allow users to change activity spoon value count from profile
-        [] Allow users to remove activity from profile using new route /remove
+***
 
-    ### Extra Credit:
-        #### Share
-            [] Allow user to share their activities & activity values with another user
+## Setup/Installation Requirements
+
+*Note: this project was built in the CS50 Codespace. Setup/Installation Requirements forthcoming.*
+
+***
+
+## Known Bugs
+
+* No known bugs. If you find one, please email me at kirsten.opstad@gmail.com with the subject **[_Repo Name_] Bug** and include:
+  * BUG: _A brief description of the bug_
+  * FIX: _Suggestion for solution (if you have one!)_
+  * If you'd like to be credited, please also include your **_github user profile link_**
+
+*** 
+
+## License
+
+MIT License
+
+Copyright (c) 2023 Kirsten Opstad
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
