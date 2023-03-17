@@ -94,7 +94,7 @@ This application will:
 
 ### Questions considered
 
-- What will your software do? What features will it have? How will it be executed?
+- *__What will your software do? What features will it have? How will it be executed?__*
     - Register, login & log out users
     - Track (on a daily basis) quantity of "spoons" used
         - Tasks that require energy reduce spoon count by a given amount
@@ -102,20 +102,20 @@ This application will:
     - Allow users to create new acivities and assign "spoon" value to them
     - Future features:
         - Allow users to form groups that share a task list (like a roommates using a chore wheel)
-- What new skills will you need to acquire? What topics will you need to research?
+- *__What new skills will you need to acquire? What topics will you need to research?__*
     - How to securely store user passwords
     - How to reset a value (number of daily "spoons") based on a new day
-- If working with one or two classmates, who will do what?
+- *__If working with one or two classmates, who will do what?__*
     - Working solo
-- In the world of software, most everything takes longer to implement than you expect. And so it’s not uncommon to accomplish less in a fixed amount of time than you hope. What might you consider to be a good outcome for your project? A better outcome? The best outcome?
+- *__In the world of software, most everything takes longer to implement than you expect. And so it’s not uncommon to accomplish less in a fixed amount of time than you hope. What might you consider to be a good outcome for your project? A better outcome? The best outcome?__*
     - Good:
-        [] Operable web application that technically meets requirements above (not inlcuding future features)
+        - Operable web application that technically meets requirements above (not inlcuding future features)
     - Better:
-        [] Peer-tested web application that meets requirements and has integrated at least one piece of user feedback
-        [] Incorporates design aesthetics that improve the user experience (nice graphics)
+        - Peer-tested web application that meets requirements and has integrated at least one piece of user feedback
+        - Incorporates design aesthetics that improve the user experience (nice graphics)
     - Best:
-        [] Supports sharing data with other users (see future features).
-        [] Allows export of CSV of easy-to-read chart that displays:
+        - Supports sharing data with other users (see future features).
+        - Allows export of CSV of easy-to-read chart that displays:
             - Given set of connected users
             - Tasks & user-defined "spoon" values
 
